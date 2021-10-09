@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -34,7 +35,8 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+// import { useUserDispatch, signOut } from "../../context/UserContext";
+import { logout, useAuthState, useAuthDispatch } from "../../context/auth";
 
 const messages = [
   {
@@ -93,9 +95,13 @@ export default function Header(props) {
   var classes = useStyles();
 
   // global
-  var layoutState = useLayoutState();
-  var layoutDispatch = useLayoutDispatch();
-  var userDispatch = useUserDispatch();
+  const { loading, isAuthenticated } = useAuthState()
+
+  const history = useHistory();
+
+  const layoutState = useLayoutState();
+  const layoutDispatch = useLayoutDispatch();
+  const userDispatch = useAuthDispatch()
 
   // local
   var [mailMenu, setMailMenu] = useState(null);
@@ -328,7 +334,10 @@ export default function Header(props) {
             <Typography
               className={classes.profileMenuLink}
               color="primary"
-              onClick={() => signOut(userDispatch, props.history)}
+              onClick={(e) => {
+                logout(userDispatch) //call the logout action
+                history.push('/login') //navigate to logout page on logout
+              }}
             >
               Sign Out
             </Typography>

@@ -7,16 +7,17 @@ import Themes from "./themes";
 import App from "./components/App";
 import reportWebVitals from './reportWebVitals';
 import { LayoutProvider } from "./context/LayoutContext";
-import { UserProvider } from "./context/UserContext";
+
+import { AuthProvider } from './context/auth';
 
 ReactDOM.render(
   <LayoutProvider>
-    <UserProvider>
+    <AuthProvider>
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         <App />
       </ThemeProvider>
-    </UserProvider>
+    </AuthProvider>
   </LayoutProvider>,
   document.getElementById("root"),
 );
