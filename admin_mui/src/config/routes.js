@@ -1,48 +1,56 @@
-import Home from '../pages/Home/Home';
-import NotFound from '../pages/Home/404';
-import Login from '../pages/Auth/Login/index';
-import Signup from '../pages/Auth/Signup';
-import ResetPass from '../pages/Auth/ResetPass';
+import { Dashboard, Posts, Typography, Notifications, Maps, Tables, Icons, Charts, Error } from '../pages/Admin/index';
 
-import Posts from '../pages/Posts/index';
-import Dashboard from '../pages/Dashboard/index';
-
-const routes = [
+const AdminRoutes = [
   {
-    path: '/login',
-    component: Login,
-    isPrivate: false,
-  },
-  {
-    path: '/signup',
-    component: Signup,
-    isPrivate: false,
-  },
-  {
-    path: '/resetpassword',
-    component: ResetPass,
-    isPrivate: false,
-  },
-  {
-    path: '/dashboard',
+    path: '/admin/dashboard',
     component: Dashboard,
     isPrivate: true,
   },
   {
-    path: '/posts',
+    path: '/admin/posts',
     component: Posts,
     isPrivate: true,
   },
   {
-    path: '/404',
-    component: NotFound,
-    isPrivate: false,
+    path: '/admin/typography',
+    component: Typography,
+    isPrivate: true,
   },
   {
-    path: '/',
-    component: Home,
+    path: '/admin/notifications',
+    component: Notifications,
+    isPrivate: true,
+  },
+  {
+    path: '/admin/maps',
+    component: Maps,
+    isPrivate: true,
+  },
+  {
+    path: '/admin/tables',
+    component: Tables,
+    isPrivate: true,
+  },
+  {
+    path: '/admin/ui/maps',
+    component: Maps,
+    isPrivate: true,
+  },
+  {
+    path: '/admin/ui/icons',
+    component: Icons,
+    isPrivate: true,
+  },
+  {
+    path: '/admin/ui/charts',
+    component: Charts,
+    isPrivate: true,
+  },
+  {
+    path: '*',
+    component: Error,
     isPrivate: false,
   }
 ];
 
-export default routes;
+export { AdminRoutes };

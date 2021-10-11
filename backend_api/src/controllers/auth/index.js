@@ -134,6 +134,7 @@ const Me = async (req, res, next) => {
 		const user = await User.findById(user_id).select("-password -__v");
 
 		res.json(user);
+		// setTimeout(() => res.json(user), 3000);
 	} catch (e) {
 		next(e);
 	}

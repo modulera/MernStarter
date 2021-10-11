@@ -1,28 +1,29 @@
-// import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import routes from './config/routes';
+// public pages
+import Error from "./pages/Error";
+import Login from './pages/Auth/Login';
+// import Signup from './pages/Auth/Signup';
+// import ResetPass from './pages/Auth/ResetPass';
+
+// admin pages layout(mui container)
 import Layout from "./components/Layout";
-import AppRoute from './components/AppRoutes';
+
+// console.log(publicRoutes)
+// import { useAuthState } from './context/auth';
 
 function App() {
+  // const authState = useAuthState();
+
   return (
     <Router>
-      <Layout>
-        <Switch>
-          {routes.map((route) => (
-            <AppRoute
-              key={route.path}
-              path={route.path}
-              component={route.component}
-              isPrivate={route.isPrivate}
-            />
-          ))}
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route exact path="/" render={() => <Redirect to="/admin/dashboard" />} />
+        <Route exact path="/admin" render={() => <Redirect to="/admin/dashboard" />} />
+        <Route path="/admin" component={Layout} />
+        <Route path="/login" component={Login} />
+        <Route component={Error} />
+      </Switch>
     </Router>
   );
 }
