@@ -6,18 +6,15 @@ export default makeStyles(theme => ({
     maxWidth: "100vw",
     overflowX: "hidden",
   },
-  content: {
+  container: {
     flexGrow: 1,
     padding: theme.spacing(3),
     width: `calc(100vw - 240px)`,
     minHeight: "100vh",
-
-    
     display: "flex", // ! for footer push bottom
     flexDirection: "column", // ! for footer push bottom
   },
-  grow: { flexGrow: 1, fontSize: "10px" }, // ! for footer push bottom
-  contentShift: {
+  containerShift: {
     width: `calc(100vw - ${240 + theme.spacing(6)}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -26,6 +23,10 @@ export default makeStyles(theme => ({
   },
   fakeToolbar: {
     ...theme.mixins.toolbar,
+  },
+  content: {
+    flexGrow: 1, // ! for footer push bottom
+    display:"flex",
   },
   link: {
     '&:not(:first-child)': {

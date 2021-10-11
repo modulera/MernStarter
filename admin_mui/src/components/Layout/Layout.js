@@ -41,24 +41,25 @@ function Layout(props) {
       <>
         <Header history={props.history} />
         <Sidebar />
-        <div className={classnames(classes.content, {
-          [classes.contentShift]: layoutState.isSidebarOpened,
+        <div className={classnames(classes.container, {
+          [classes.containerShift]: layoutState.isSidebarOpened,
         })}>
 
           <div className={classes.fakeToolbar} />
 
-          <Switch>
-            {AdminRoutes.map((route) => (
-              <AppRoute
-                key={route.path}
-                path={route.path}
-                component={route.component}
-                isPrivate={route.isPrivate}
-              />
-            ))}
-          </Switch>
+          <div className={classes.content}>
+            <Switch>
+              {AdminRoutes.map((route) => (
+                <AppRoute
+                  key={route.path}
+                  path={route.path}
+                  component={route.component}
+                  isPrivate={route.isPrivate}
+                />
+              ))}
+            </Switch>
+          </div>
 
-          <div className={classes.grow} />
           <Box
             mt={5}
             width={"100%"}

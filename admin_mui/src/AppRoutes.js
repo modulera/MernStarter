@@ -44,7 +44,11 @@ const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
                 }
 
                 // fetch işlemi tamamlandı ve loading false ise compenenti render ediyoruz
-                return (isFetching && !loading ? <Component {...props} /> : <CircularProgress size={26} />);
+                return (isFetching && !loading ? (
+                    <div>
+                        <Component {...props} />
+                    </div>
+                ) : <CircularProgress size={26} style={{ margin: "auto" }} />);
             }}
             {...rest}
         />
