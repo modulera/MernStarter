@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Switch, withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { Box, IconButton, Link } from '@material-ui/core'
 import Icon from '@mdi/react'
@@ -27,7 +22,7 @@ import Sidebar from "../Sidebar";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 
-import AppRoute from '../../AppRoutes';
+import AppRoute from '../AppRoutes';
 import { AdminRoutes } from '../../config/routes';
 
 function Layout(props) {

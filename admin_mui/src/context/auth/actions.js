@@ -62,9 +62,12 @@ export const checkAuthenticated = async (dispatch, isPrivate, path, history) => 
         try {
             const res = await axios.get(`${baseURL}/auth/me`, config);
 
-            dispatch({ type: AUTHENTICATED_SUCCESS });
-            dispatch({ type: USER_LOADED_SUCCESS, payload: res.data });
-
+            if (res && res.data.role === 'admin') {
+                dispatch({ type: AUTHENTICATED_SUCCESS });
+                dispatch({ type: USER_LOADED_SUCCESS, payload: res.data });
+            } else {
+                dispatch({ type: AUTHENTICATED_FAIL, errorMessage: 'User not found!' });
+            }
         } catch (err) {
             // logger(AUTHENTICATED_FAIL, 'e')
 
@@ -143,29 +146,19 @@ export const loginUser = async (dispatch, email, password) => {
     }
 };
 
-export const signup = async (dispatch, username, email, phone, first_name, last_name, password, re_password) => {
+export const signup = async (dispatch, email, password, name) => {
     dispatch({ type: START_LOADING });
 
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+    const config = { headers: { 'Content-Type': 'application/json' } }
 
-    const body = JSON.stringify({ username, email, phone, first_name, last_name, password, re_password });
+    const body = JSON.stringify({ email, password });
 
     try {
         const res = await axios.post(`${baseURL}/auth/register`, body, config);
 
-        dispatch({
-            type: SIGNUP_SUCCESS,
-            payload: res.data
-        });
+        dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
     } catch (err) {
-        dispatch({
-            type: SIGNUP_FAIL,
-            errorMessage: parseError(err)
-        });
+        dispatch({ type: SIGNUP_FAIL, errorMessage: parseError(err) });
     }
 };
 

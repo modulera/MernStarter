@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // public pages
-import Error from "./pages/Error";
-import Login from './pages/Auth/Login';
+import Error from "../pages/Error/Error";
+import Login from '../pages/Auth/Login/Login';
 // import Signup from './pages/Auth/Signup';
 // import ResetPass from './pages/Auth/ResetPass';
 
 // admin pages layout(mui container)
-import Layout from "./components/Layout";
+import Layout from "./Layout/Layout";
 
 // console.log(publicRoutes)
 // import { useAuthState } from './context/auth';

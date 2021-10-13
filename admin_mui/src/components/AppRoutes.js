@@ -3,9 +3,9 @@ import { Redirect, Route, useHistory } from "react-router-dom";
 
 import { CircularProgress } from "@material-ui/core";
 
-import { checkAuthenticated, useAuthState, useAuthDispatch } from './context/auth';
+import { checkAuthenticated, useAuthState, useAuthDispatch } from '../context/auth';
 
-import logger from './utils/logger';
+import logger from '../utils/logger';
 
 const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
     const { loading, accessToken, isAuthenticated } = useAuthState();
@@ -45,7 +45,7 @@ const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
 
                 // fetch işlemi tamamlandı ve loading false ise compenenti render ediyoruz
                 return (isFetching && !loading ? (
-                    <div>
+                    <div style={{ width: "100%" }}>
                         <Component {...props} />
                     </div>
                 ) : <CircularProgress size={26} style={{ margin: "auto" }} />);
