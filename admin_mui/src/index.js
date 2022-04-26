@@ -11,7 +11,7 @@ import Themes from "./themes";
 import { AuthProvider } from './context/auth';
 import { LayoutProvider } from "./context/LayoutContext";
 
-import App from './App';
+import App from './components/App';
 
 ReactDOM.render(
   <React.StrictMode>

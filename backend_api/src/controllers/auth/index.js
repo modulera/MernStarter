@@ -132,9 +132,11 @@ const Me = async (req, res, next) => {
 
 	try {
 		const user = await User.findById(user_id).select("-password -__v");
+		console.debug('---------------user------------------')
+		console.debug(user)
 
-		res.json(user);
-		// setTimeout(() => res.json(user), 3000);
+		// res.json(user);
+		setTimeout(() => res.json(user), 1000);
 	} catch (e) {
 		next(e);
 	}
