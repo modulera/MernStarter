@@ -33,12 +33,9 @@ const verifyAccessToken = (req, res, next) => {
 
 	JWT.verify(authorizationToken, process.env.JWT_SECRET, (err, payload) => {
 		if (err) {
-			console.error('----JsonWebTokenError----');
-			console.error(err);
 			return next(
 				Boom.unauthorized(
-					// err.name === "JsonWebTokenError" ? "Unauthorized: " : err.message
-					err.message
+					err.name === "JsonWebTokenError" ? "Unauthorized: " : err.message
 				)
 			);
 		}
