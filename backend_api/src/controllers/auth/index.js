@@ -127,16 +127,16 @@ const Logout = async (req, res, next) => {
 	}
 };
 
+const wait = (timeout = 3000) => new Promise((resolve, reject) => setTimeout(() => resolve(true), timeout));
+
 const Me = async (req, res, next) => {
 	const { user_id } = req.payload;
 
 	try {
 		const user = await User.findById(user_id).select("-password -__v");
-		console.debug('---------------user------------------')
-		console.debug(user)
 
-		// res.json(user);
-		setTimeout(() => res.json(user), 1000);
+		// await wait(1000)
+		res.json(user);
 	} catch (e) {
 		next(e);
 	}
