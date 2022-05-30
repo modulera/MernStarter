@@ -10,6 +10,7 @@ node_modules/
 
 # production
 /client/build
+/backend_api/dist
 
 # misc
 .DS_Store
